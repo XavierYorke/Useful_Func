@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-'''
-@Time    :   2022/03/04 00:48:46
-@Author  :   XavierYorke 
-@Contact :   mzlxavier1230@gmail.com
-'''
+
+# Time    :   2022/3/29
+# Author  :   XavierYorke
+# Contact :   mzlxavier1230@gmail.com
 
 import torch
 import torchkeras
@@ -14,7 +13,7 @@ import netron
 
 def export(save_pth, model_path):
 
-    net = 'Net()'
+    net = 'your model'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     checkpoint = torch.load(model_path, map_location=device)

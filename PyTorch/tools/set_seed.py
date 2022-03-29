@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-'''
-@Time    :   2022/03/04 00:38:20
-@Author  :   XavierYorke 
-@Contact :   mzlxavier1230@gmail.com
-'''
 
+# Time    :   2022/3/29
+# Author  :   XavierYorke
+# Contact :   mzlxavier1230@gmail.com
 
 import torch
 import random

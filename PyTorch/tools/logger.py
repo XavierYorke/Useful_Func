@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-'''
-@Time    :   2022/03/04 00:37:28
-@Author  :   XavierYorke 
-@Contact :   mzlxavier1230@gmail.com
-'''
+
+# Time    :   2022/3/29
+# Author  :   XavierYorke
+# Contact :   mzlxavier1230@gmail.com
 
 import logging
 import os.path as osp
+
 
 # log setting
 def setup_logger(log_pth):
@@ -22,5 +22,10 @@ def setup_logger(log_pth):
     console = logging.StreamHandler()
     console.setFormatter(logging.Formatter(format))
     logging.getLogger().addHandler(console)
-    logger = logging.getLogger()
-    return logger
+    return logging.getLogger()
+
+
+if __name__ == '__main__':
+    output_dir = r'output_dir'
+    logger = setup_logger(output_dir)
+    logger.info('START LOGGING')
