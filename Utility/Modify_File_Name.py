@@ -21,7 +21,6 @@ import argparse
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Modify file names in bulk')
     parser.add_argument('-d', '--dir', type=str, default='D:/影视/Eva', help='file dir')
-    parser.add_argument('-o', '--output', type=str, default='', help='output dir')
     args = parser.parse_args()
     file_list = glob.glob(os.path.join(args.dir, '*.mkv'))
     # print(file_list[-1][:36] + '.mkv')
