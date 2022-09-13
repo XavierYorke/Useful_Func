@@ -21,7 +21,7 @@ def setup_logger(log_pth):
 
     logging.basicConfig(level=Log_level, format=Format, datefmt=Datefmt, filename=Logfile)
     console = logging.StreamHandler()
-    console.setFormatter(logging.Formatter(format))
+    console.setFormatter(logging.Formatter(Format))
     logging.getLogger().addHandler(console)
     logger = logging.getLogger()
     return logger
