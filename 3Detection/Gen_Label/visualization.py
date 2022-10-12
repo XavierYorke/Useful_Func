@@ -16,7 +16,7 @@ import matplotlib.patches as patch
 
 def json_bbox(nodule, img_or, img_sp):
     x, y, z, d = nodule[0] * img_sp[0] + img_or[0], nodule[1] * img_sp[1] + \
-        img_or[1], nodule[2] * img_sp[2] + img_or[2], nodule[3] * img_sp[0] * 2
+                 img_or[1], nodule[2] * img_sp[2] + img_or[2], nodule[3] * img_sp[0] * 2
 
     return (x, y, z, d)
 
@@ -24,11 +24,11 @@ def json_bbox(nodule, img_or, img_sp):
 def json_test(nodule, img_or, img_sp):
     print('test nodule: ', nodule)
     x, y, z, d = nodule[0] * img_sp[0] + img_or[0], nodule[1] * img_sp[1] + \
-        img_or[1], nodule[2] * img_sp[2] + img_or[2], nodule[3] * img_sp[0] * 2
+                 img_or[1], nodule[2] * img_sp[2] + img_or[2], nodule[3] * img_sp[0] * 2
     print('test :', x, y, z, d)
-    x, y, z = int((x-img_or[0])/img_sp[0]), int(
-        (y-img_or[1])/img_sp[1]), int((z-img_or[2])/img_sp[2])    # 将坐标转换为像素坐标
-    d = int(d/img_sp[0]/2)  # 将直径转换为像素坐标
+    x, y, z = int((x - img_or[0]) / img_sp[0]), int(
+        (y - img_or[1]) / img_sp[1]), int((z - img_or[2]) / img_sp[2])  # 将坐标转换为像素坐标
+    d = int(d / img_sp[0] / 2)  # 将直径转换为像素坐标
 
     print('test: ', x, y, z, d)
 
@@ -40,7 +40,7 @@ rgbmask = np.array([[0, 0, 0], [1, 1, 1]], dtype=np.uint8)
 def getboundingbox(image):
     # mask.shape = [image.shape[0], image.shape[1], classnum]
     mask = np.zeros((image.shape[0], image.shape[1],
-                    image.shape[2]), dtype=np.uint8)
+                     image.shape[2]), dtype=np.uint8)
     mask[np.where(image == 1)] = 1
 
     # mask[np.where(np.all(image == 1, axis=-1))[:2]] = 1
@@ -61,7 +61,6 @@ def getboundingbox(image):
 
 # radius是正方形边长一半，pad是边的宽度,max_show_num最大展示数
 def show_nodules(ct_scan, nodules, Origin, Spacing, pad=2, max_show_num=4):
-
     show_index = []
     # lable是一个nx4维的数组，n是肺结节数目，4代表x,y,z,以及直径
     # for idx in range(nodules.shape[0]):
@@ -70,30 +69,30 @@ def show_nodules(ct_scan, nodules, Origin, Spacing, pad=2, max_show_num=4):
     #     continue
     # print('nodules: ', nodules)
 
-    x, y, z = int((nodules[0]-Origin[0])/Spacing[0]), int(
-        (nodules[1]-Origin[1])/Spacing[1]), int((nodules[2]-Origin[2])/Spacing[2])    # 将坐标转换为像素坐标
+    x, y, z = int((nodules[0] - Origin[0]) / Spacing[0]), int(
+        (nodules[1] - Origin[1]) / Spacing[1]), int((nodules[2] - Origin[2]) / Spacing[2])  # 将坐标转换为像素坐标
     #     x, y, z = int(nodules[0]), int(nodules[1]), int(nodules[2])
     # print(x, y, z)
     ct_scan = np.transpose(ct_scan, (2, 0, 1))
     data = ct_scan[z]
     print(data.shape)
-    radius = int(nodules[3]/Spacing[0]/2)  # 将直径转换为像素坐标
+    radius = int(nodules[3] / Spacing[0] / 2)  # 将直径转换为像素坐标
     #     radius = int(nodules[3])
     # print(radius)
-    #pad = 2*radius
+    # pad = 2*radius
     # 注意 y代表纵轴，x代表横轴
     data[x, y] = 0
     data[max(0, x - radius):min(data.shape[0], x + radius),
-         max(0, y - radius - pad):max(0, y - radius)] = 3000  # 竖线
+    max(0, y - radius - pad):max(0, y - radius)] = 3000  # 竖线
 
     data[max(0, x - radius):min(data.shape[0], x + radius),
-         min(data.shape[1], y + radius):min(data.shape[1], y + radius + pad)] = 3000  # 竖线
+    min(data.shape[1], y + radius):min(data.shape[1], y + radius + pad)] = 3000  # 竖线
 
     data[max(0, x - radius - pad):max(0, x - radius),
-         max(0, y - radius):min(data.shape[1], y + radius)] = 3000  # 横线
+    max(0, y - radius):min(data.shape[1], y + radius)] = 3000  # 横线
 
     data[min(data.shape[0], x + radius):min(data.shape[0], x + radius + pad),
-         max(0, y - radius):min(data.shape[1], y + radius)] = 3000  # 横线
+    max(0, y - radius):min(data.shape[1], y + radius)] = 3000  # 横线
 
     # if z in show_index:  # 检查是否有结节在同一张切片，如果有，只显示一张
     #     continue
@@ -124,8 +123,8 @@ for file in files:
     # print('centroid: ', centroid)
 
     for box, center in zip(boundingbox, centroid):
-        diameter = np.sqrt((box[0] - center[0])**2 +
-                           (box[1] - center[1])**2 + (box[2] - center[2])**2)
+        diameter = np.sqrt((box[0] - center[0]) ** 2 +
+                           (box[1] - center[1]) ** 2 + (box[2] - center[2]) ** 2)
         fig = plt.figure(figsize=(15, 15))
         # 标签
         ax1 = fig.add_subplot(1, 3, 1)
@@ -148,7 +147,7 @@ for file in files:
         nodule = center + (diameter / 2,)
         # print(nodule)
 
-        OR = mask_img.GetOrigin()   # 从图像中读取原点,即体素的中心
+        OR = mask_img.GetOrigin()  # 从图像中读取原点,即体素的中心
         print('or: ', OR)
         SP = mask_img.GetSpacing()  # 像素间距,即体素的大小
         print('sp: ', SP)

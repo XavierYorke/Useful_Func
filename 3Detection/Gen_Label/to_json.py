@@ -70,6 +70,6 @@ def csv2json(csv_path, json_path):
 
 
 if __name__ == '__main__':
-    csv_path = './lesion.csv'
-    json_path = './lesion_test.json'
+    csv_path = './lesion_full.csv'
+    json_path = './lesion_full.json'
     csv2json(csv_path, json_path)
